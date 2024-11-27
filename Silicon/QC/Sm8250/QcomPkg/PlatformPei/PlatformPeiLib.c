@@ -13,6 +13,7 @@
 #include <Library/HobLib.h>
 #include <Library/MemoryAllocationLib.h>
 #include <Library/PcdLib.h>
+#include <Library/SecProtocolFinderLib.h>
 #include "PlatformPeiLibInternal.h"
 
 STATIC
@@ -131,7 +132,6 @@ VOID BuildMemHobForFv(IN UINT16 Type)
 }
 
 STATIC GUID gEfiInfoBlkHobGuid    = EFI_INFORMATION_BLOCK_GUID;
-STATIC GUID gEfiSchedIntfGuid     = EFI_SCHED_INTF_GUID;
 STATIC GUID gEfiShLibHobGuid      = EFI_SHIM_LIBRARY_GUID;
 STATIC GUID gFvDecompressHobGuid  = EFI_FV_DECOMPRESS_GUID;
 STATIC GUID gQcomProdmodeInfoGuid = EFI_QCOM_PRODMODE_INFO_GUID;
@@ -145,10 +145,12 @@ VOID InstallPlatformHob()
     LocateMemoryMapAreaByName("Info Blk", &InfoBlk);
 
     UINTN InfoBlkAddress      = InfoBlk.Address;
-    UINTN SchedIntfAddress    = PcdGet64(SchedIntfProtocolAddress);
+    UINTN SchedIntfAddress    = 0;
     UINTN ShLibAddress        = (UINTN)&ShLib;
     UINTN FvDecompressAddress = 0x9FC403D0;
     BOOLEAN gProdmodeInfo     = FALSE;
+
+    InitProtocolFinder(&SchedIntfAddress, NULL);
 
     BuildMemHobForFv(EFI_HOB_TYPE_FV2);
     BuildGuidDataHob(

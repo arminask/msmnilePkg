@@ -37,13 +37,16 @@
   MemoryAllocationLib
   MemoryMapHelperLib
   SerialPortLib
+  SecProtocolFinderLib
+
+[Guids]
+  gEfiSchedIntfGuid
 
 [FixedPcd]
   gArmTokenSpaceGuid.PcdFvSize
 
 [Pcd]
   gArmTokenSpaceGuid.PcdFvBaseAddress
-  gQcomPkgTokenSpaceGuid.SchedIntfProtocolAddress
 
 [Depex]
   gEfiPeiMemoryDiscoveredPpiGuid

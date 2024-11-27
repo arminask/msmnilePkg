@@ -39,11 +39,14 @@
   MemoryAllocationLib
   MemoryMapHelperLib
   SerialPortLib
+  SecProtocolFinderLib
+
+[Guids]
+  gEfiSchedIntfGuid
+  gEfiSecDtbGuid
 
 [FixedPcd]
   gArmTokenSpaceGuid.PcdFvSize
-  gQcomPkgTokenSpaceGuid.KernelProtocolAddress
-  gQcomPkgTokenSpaceGuid.XBLDTProtocolAddress
 
 [Pcd]
   gArmTokenSpaceGuid.PcdFvBaseAddress
